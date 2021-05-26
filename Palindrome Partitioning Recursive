@@ -1,0 +1,45 @@
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isPalindrome(string String,int start,int end)
+{
+	while(start<end)
+	{
+		if(String[start]!=String[end])
+		{
+			return false;
+		}
+		start++;
+		end--;
+	}
+	return true;
+}
+
+int minPalPartion(string str,int i,int j)
+{
+	if(i>=j || isPalindrome(str,i,j))
+	{
+		return 0;
+	}
+	int mini=INT_MAX, temp;
+	
+	for(int k=i;k<j;k++)
+	{
+		temp=1+ minPalPartion(str,i,k)+minPalPartion(str,k+1,j);
+		
+		mini=min(mini,temp);
+	}
+	
+	
+	return mini;
+}
+int main()
+{
+	string str = "ababbbabbababa";
+    cout << "Min cuts needed for " <<"Palindrome Partitioning is " << minPalPartion(str, 0, str.length() - 1) << endl;
+	
+	
+	return 0;
+}
