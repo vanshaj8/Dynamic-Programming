@@ -1,0 +1,33 @@
+
+
+// 1 2 3 4 
+// 1 alone then 2 3 4 can be combined as 2 - 3 - 4 , 2- 34 , 23-4,24-3;
+// 1 combine with 2..... 3 -4, 34  -------------1
+// 1 combine with 3.....2-4,24-------------------2
+// 1 combine with 4......23,2-3; ----------------3
+
+
+(n-1)+(n-1)*(n-2)
+class Solution
+{
+public:
+ 
+    int countFriendsPairings(int n) 
+    { 
+        long long  dp[n+1];
+        long long  mod=1000000007;
+        for(int i=1;i<=n;i++)
+        {
+            if(i<=2)
+            {
+                dp[i]=i;
+            }
+            else
+            {
+            dp[i]=(dp[i-1]+((i-1)*dp[i-2])%mod)%mod;
+        }
+        }
+        
+        return dp[n];
+    }
+};    
