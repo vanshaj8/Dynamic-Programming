@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+#define so sizeof
+using namespace std;
+
+
+// Program for largest Sum Continious Subaray
+int main()
+{
+    // Brute Force 
+    int arr[]={1,2,3,-2,5};
+    int n=so(arr)/so(arr[0]);
+    int max_sum=0;
+    for(int i=0;i<n;i++)
+    {
+        int sum=0;
+        for(int j=i;j<n;j++)
+        {
+            sum=sum+arr[j];
+            if(sum>max_sum)
+            {
+                max_sum=sum;
+            }
+        }
+    }
+
+    // Kadane Algorithm
+    int curr_max=arr[0];
+    int  global_max=arr[0];
+
+    for(int j=1;j<n;j++)
+    {
+        curr_max=max(arr[j],curr_max+arr[j]);
+        global_max=max(curr_max,global_max);
+    }
+    cout<<max_sum<<endl;
+    cout<<global_max<<endl;
+    return 0;
+}
