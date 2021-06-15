@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	// Brute force Approach o(n^2)
+	int arr[]={3,-4,2,-3,-1,7,5};
+	int n=sizeof(arr)/sizeof(arr[0]);
+
+	int min_sum;
+	for(int i=0;i<n;i++)
+	{
+		int sum=0;
+		for(int j=i;j<n;j++)
+		{
+			sum=sum+arr[j];
+			if(sum<min_sum)
+			{
+				min_sum=sum;
+			}
+		}
+	}
+	cout<<min_sum<<endl;
+
+	// Using Kadane's Algorithm O(N) SOLUTION
+
+	int curr_min=arr[0];
+	int global_min=arr[0];
+	for(int i=1;i<n;i++)
+	{
+		curr_min=min(arr[i],arr[i]+curr_min);
+		global_min=min(curr_min,global_min);
+	}
+
+	cout<<global_min<<endl;
+	return 0;
+}
